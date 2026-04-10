@@ -1,9 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-  <title>Modi Website</title>
+  <meta charset="UTF-8">
+  <title>时尚的尽头是一件永不过时的单品</title>
+
+  <style>
+    body {
+      background-color: #ffe4ec;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #d63384;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      margin-bottom: 40px;
+    }
+
+    img {
+      width: 300px;
+      border-radius: 20px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e754a6;
+    }
+
+    .text {
+      display: none;
+      margin-top: 10px;
+      color: #555;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello Modi & chelsea👋</h1>
+
+  <h1>时尚的尽头是一件永不过时的单品</h1>
+
+  <!-- 图片1 -->
+  <div class="card">
+    <img src="IMG_4091.jpeg">
+    <button onclick="toggleText('t1')">点我写点东西</button>
+    <p id="t1" class="text">文本1</p>
+  </div>
+
+  <!-- 图片2 -->
+  <div class="card">
+    <img src="IMG_4089.jpeg">
+    <button onclick="toggleText('t2')">点我写点东西</button>
+    <p id="t2" class="text">文本2</p>
+  </div>
+
+  <!-- 图片3 -->
+  <div class="card">
+    <img src="IMG_3688.jpeg">
+    <button onclick="toggleText('t3')">这里可以写文字</button>
+    <p id="t3" class="text">文本3</p>
+  </div>
+
+  <!-- 图片4 -->
+  <div class="card">
+    <img src="FullSizeRender.jpeg">
+    <button onclick="toggleText('t4')">点我看看</button>
+    <p id="t4" class="text">文本4</p>
+  </div>
+
+  <script>
+    function toggleText(id) {
+      var text = document.getElementById(id);
+      if (text.style.display === "none") {
+        text.style.display = "block";
+      } else {
+        text.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
