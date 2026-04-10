@@ -1,125 +1,605 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8">
-<title>时尚的尽头是一件永不过时的单品</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>时尚的尽头是一件永不过时的单品</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont;
-  background: #fff7f9;
-  color: #333;
-}
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(to bottom, #fff8fa 0%, #fff2f5 100%);
+      color: #1d1d1f;
+    }
 
-h1 {
-  text-align: center;
-  margin: 60px 20px 40px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  font-size: 20px;
-  color: #c2185b;
-}
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 246, 248, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(225, 193, 201, 0.35);
+    }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-  padding: 40px;
-  max-width: 1000px;
-  margin: auto;
-}
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-.card {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
+    .nav-inner a {
+      text-decoration: none;
+      color: #8f6270;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+    .nav-inner a:hover {
+      background: rgba(228, 164, 181, 0.18);
+      color: #7a4656;
+    }
 
-img {
-  width: 100%;
-  display: block;
-}
+    .hero {
+      text-align: center;
+      padding: 90px 20px 56px;
+    }
 
-.content {
-  padding: 15px;
-}
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      color: #2d2b2d;
+    }
 
-button {
-  background: #f06292;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 20px;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-}
+    .hero p {
+      margin-top: 14px;
+      color: #8f878a;
+      font-size: 18px;
+    }
 
-button:hover {
-  background: #ec407a;
-}
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 16px 64px;
+    }
 
-.text {
-  margin-top: 10px;
-  display: none;
-  font-size: 13px;
-  color: #666;
-}
-</style>
+    .season {
+      margin-top: 26px;
+      padding-top: 26px;
+    }
+
+    .season-title {
+      text-align: center;
+      font-size: clamp(30px, 4vw, 44px);
+      margin: 0 0 26px;
+      color: #3a3134;
+      letter-spacing: -0.02em;
+    }
+
+    .subsection {
+      margin: 28px 0 42px;
+    }
+
+    .subsection-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: #a06f7d;
+      margin: 0 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(214, 153, 171, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 44px rgba(214, 153, 171, 0.16);
+    }
+
+    .card img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+    }
+
+    .content {
+      text-align: center;
+      padding: 24px 20px 26px;
+    }
+
+    .content h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: #2f2b2d;
+    }
+
+    .sub {
+      color: #9c8f94;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      border: none;
+      background: linear-gradient(135deg, #e5a5b6, #d98ea3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.98);
+    }
+
+    .text {
+      display: none;
+      margin-top: 14px;
+      font-size: 15px;
+      color: #6f6669;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .divider {
+      width: 100%;
+      max-width: 520px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(205, 160, 173, 0.55), transparent);
+      margin: 42px auto 0;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(20, 18, 19, 0.88);
+      padding: 24px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 26px;
+      color: white;
+      font-size: 34px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    footer {
+      text-align: center;
+      color: #9d8f94;
+      font-size: 12px;
+      padding: 28px 20px 40px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card img {
+        height: 360px;
+      }
+
+      .hero {
+        padding-top: 74px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<h1>时尚的尽头是一件永不过时的单品</h1>
-
-<div class="gallery">
-
-  <div class="card">
-    <img src="IMG_4091.jpeg">
-    <div class="content">
-      <button onclick="toggle('t1')">view</button>
-      <div id="t1" class="text">。）</div>
+  <div class="navbar">
+    <div class="nav-inner">
+      <a href="#spring2026">2026 Spring</a>
+      <a href="#fall2026">2026 Fall</a>
+      <a href="#spring2027">2027 Spring</a>
+      <a href="#fall2027">2027 Fall</a>
     </div>
   </div>
 
-  <div class="card">
-    <img src="IMG_4089.jpeg">
-    <div class="content">
-      <button onclick="toggle('t2')">view</button>
-      <div id="t2" class="text">。</div>
-    </div>
+  <section class="hero">
+    <h1>时尚的尽头是一件永不过时的单品</h1>
+    <p>Less trend. More style.</p>
+  </section>
+
+  <main class="container">
+
+    <section class="season" id="spring2026">
+      <h2 class="season-title">2026 Spring</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">无聊的学校生活</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_4091.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>安静的一天</h3>
+              <div class="sub">School life</div>
+              <button class="btn" onclick="toggleText('t1')">展开文字</button>
+              <div class="text" id="t1">这里写 2026 Spring 学校生活的内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="IMG_4089.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>日常片段</h3>
+              <div class="sub">Routine moments</div>
+              <button class="btn" onclick="toggleText('t2')">展开文字</button>
+              <div class="text" id="t2">这里写 2026 Spring 学校生活的内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Spring Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>短暂逃离</h3>
+              <div class="sub">Spring break</div>
+              <button class="btn" onclick="toggleText('t3')">展开文字</button>
+              <div class="text" id="t3">这里写 2026 Spring 的 Spring Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>更亮的时刻</h3>
+              <div class="sub">Seasonal escape</div>
+              <button class="btn" onclick="toggleText('t4')">展开文字</button>
+              <div class="text" id="t4">这里写 2026 Spring 的 Spring Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Summer Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>夏天片段</h3>
+              <div class="sub">Summer break</div>
+              <button class="btn" onclick="toggleText('t5')">展开文字</button>
+              <div class="text" id="t5">这里写 2026 Spring 的 Summer Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>更自由的时间</h3>
+              <div class="sub">Vacation</div>
+              <button class="btn" onclick="toggleText('t6')">展开文字</button>
+              <div class="text" id="t6">这里写 2026 Spring 的 Summer Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </section>
+
+    <section class="season" id="fall2026">
+      <h2 class="season-title">2026 Fall</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">无聊的学校生活</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_4091.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>秋季学期</h3>
+              <div class="sub">Quiet semester</div>
+              <button class="btn" onclick="toggleText('t7')">展开文字</button>
+              <div class="text" id="t7">这里写 2026 Fall 学校生活的内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="IMG_4089.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>教室与走廊</h3>
+              <div class="sub">Campus mood</div>
+              <button class="btn" onclick="toggleText('t8')">展开文字</button>
+              <div class="text" id="t8">这里写 2026 Fall 学校生活的内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Fall Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>出走计划</h3>
+              <div class="sub">Fall break</div>
+              <button class="btn" onclick="toggleText('t9')">展开文字</button>
+              <div class="text" id="t9">这里写 2026 Fall 的 Fall Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>假期切片</h3>
+              <div class="sub">Break away</div>
+              <button class="btn" onclick="toggleText('t10')">展开文字</button>
+              <div class="text" id="t10">这里写 2026 Fall 的 Fall Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Winter Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>冬天片段</h3>
+              <div class="sub">Winter break</div>
+              <button class="btn" onclick="toggleText('t11')">展开文字</button>
+              <div class="text" id="t11">这里写 2026 Fall 的 Winter Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>冷色记忆</h3>
+              <div class="sub">Holiday season</div>
+              <button class="btn" onclick="toggleText('t12')">展开文字</button>
+              <div class="text" id="t12">这里写 2026 Fall 的 Winter Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </section>
+
+    <section class="season" id="spring2027">
+      <h2 class="season-title">2027 Spring</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">无聊的学校生活</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_4091.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>春天照常开始</h3>
+              <div class="sub">New term</div>
+              <button class="btn" onclick="toggleText('t13')">展开文字</button>
+              <div class="text" id="t13">这里写 2027 Spring 学校生活的内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="IMG_4089.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>普通而持续</h3>
+              <div class="sub">Still moving</div>
+              <button class="btn" onclick="toggleText('t14')">展开文字</button>
+              <div class="text" id="t14">这里写 2027 Spring 学校生活的内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Spring Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>离开课程表</h3>
+              <div class="sub">Spring break</div>
+              <button class="btn" onclick="toggleText('t15')">展开文字</button>
+              <div class="text" id="t15">这里写 2027 Spring 的 Spring Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>冒险预告</h3>
+              <div class="sub">Freedom</div>
+              <button class="btn" onclick="toggleText('t16')">展开文字</button>
+              <div class="text" id="t16">这里写 2027 Spring 的 Spring Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Summer Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>夏日延伸</h3>
+              <div class="sub">Summer break</div>
+              <button class="btn" onclick="toggleText('t17')">展开文字</button>
+              <div class="text" id="t17">这里写 2027 Spring 的 Summer Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>热烈时光</h3>
+              <div class="sub">Vacation mood</div>
+              <button class="btn" onclick="toggleText('t18')">展开文字</button>
+              <div class="text" id="t18">这里写 2027 Spring 的 Summer Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </section>
+
+    <section class="season" id="fall2027">
+      <h2 class="season-title">2027 Fall</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">无聊的学校生活</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_4091.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>慢慢推进</h3>
+              <div class="sub">Semester notes</div>
+              <button class="btn" onclick="toggleText('t19')">展开文字</button>
+              <div class="text" id="t19">这里写 2027 Fall 学校生活的内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="IMG_4089.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>又一个学期</h3>
+              <div class="sub">Campus diary</div>
+              <button class="btn" onclick="toggleText('t20')">展开文字</button>
+              <div class="text" id="t20">这里写 2027 Fall 学校生活的内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Fall Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>更远一点</h3>
+              <div class="sub">Fall break</div>
+              <button class="btn" onclick="toggleText('t21')">展开文字</button>
+              <div class="text" id="t21">这里写 2027 Fall 的 Fall Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>季节切换</h3>
+              <div class="sub">Break notes</div>
+              <button class="btn" onclick="toggleText('t22')">展开文字</button>
+              <div class="text" id="t22">这里写 2027 Fall 的 Fall Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Winter Break</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="IMG_3688.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>冬日停顿</h3>
+              <div class="sub">Winter break</div>
+              <button class="btn" onclick="toggleText('t23')">展开文字</button>
+              <div class="text" id="t23">这里写 2027 Fall 的 Winter Break 内容。</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="FullSizeRender.jpeg" alt="" onclick="openLightbox(this.src)">
+            <div class="content">
+              <h3>结束也是开始</h3>
+              <div class="sub">Holiday frame</div>
+              <button class="btn" onclick="toggleText('t24')">展开文字</button>
+              <div class="text" id="t24">这里写 2027 Fall 的 Winter Break 内容。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    时尚的尽头是一件永不过时的单品
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
   </div>
 
-  <div class="card">
-    <img src="IMG_3688.jpeg">
-    <div class="content">
-      <button onclick="toggle('t3')">view</button>
-      <div id="t3" class="text">。</div>
-    </div>
-  </div>
+  <script>
+    function toggleText(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === "block" ? "none" : "block";
+    }
 
-  <div class="card">
-    <img src="FullSizeRender.jpeg">
-    <div class="content">
-      <button onclick="toggle('t4')">view</button>
-      <div id="t4" class="text">。</div>
-    </div>
-  </div>
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
 
-</div>
-
-<script>
-function toggle(id) {
-  let el = document.getElementById(id);
-  el.style.display = el.style.display === "block" ? "none" : "block";
-}
-</script>
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
